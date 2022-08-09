@@ -1,12 +1,12 @@
 const { Router } = require('express');
-const userService = require('./user.service');
-const emailValidator = require('../middleware/email.validator');
-const first_nameValidator = require('../middleware/first_name.validator');
-const last_nameValidator = require('../middleware/last_name.validator');
-const phoneValidator = require('../middleware/phone.validator');
-const passwordValidator = require('../middleware/password.validator');
-const ApiError = require('../errors/validation.error');
-const authMiddleware = require('../middleware/auth.middleware');
+const userService = require('../service/user.service');
+const emailValidator = require('../../middleware/email.validator');
+const first_nameValidator = require('../../middleware/first_name.validator');
+const last_nameValidator = require('../../middleware/last_name.validator');
+const phoneValidator = require('../../middleware/phone.validator');
+const passwordValidator = require('../../middleware/password.validator');
+const ApiError = require('../../errors/validation.error');
+const authMiddleware = require('../../middleware/auth.middleware');
 
 const router = new Router();
 
@@ -39,7 +39,6 @@ router.post(
       });
       res.json(user);
     } catch (error) {
-      console.log(error);
       next(error);
     }
   },
@@ -84,7 +83,6 @@ router.put(
       const updatedUser = await userService.updateUser({
         id, email, last_name, first_name, phone, password,
       });
-      console.log(updatedUser);
       req.app.get('socketService').emiter('pushNotification', `user with id:${id} was successfuly updated`);
       res.json(updatedUser);
     } catch (error) {

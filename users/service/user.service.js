@@ -1,7 +1,7 @@
 const { QueryTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
-const ApiError = require('../errors/validation.error');
-const models = require('../models');
+const ApiError = require('../../errors/validation.error');
+const models = require('../../models');
 const jwtService = require('./jwt.service');
 
 class UserService {

@@ -1,5 +1,5 @@
 const ApiError = require('../errors/validation.error');
-const jwtService = require('../users/jwt.service');
+const jwtService = require('../users/service/jwt.service');
 
 module.exports = (req, res, next) => {
   try {
